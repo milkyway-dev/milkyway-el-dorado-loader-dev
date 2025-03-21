@@ -1,139 +1,289 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>El Dorado Spin</title>
-    <link rel="icon" href="logo.png" type="image/x-icon" />
 
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>El Dorado Spin</title>
+  <link rel="icon" href="logo.png" type="image/x-icon" />
 
-      body {
-        width: 100%;
-        height: 100vh;
-        background: #04101c;
-      }
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-      .loading {
-        width: 100%;
-        height: 100%;
-        background-image: url("./bg.png");
-        background-size: cover;
-        background-position: center;
+    body {
+      width: 100%;
+      height: 100vh;
+      background: #04101c;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-      }
+    .loading {
+      width: 100%;
+      height: 100%;
+      background-image: url("./bg.png");
+      background-size: cover;
+      background-position: center;
 
-      .loading .container {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        gap: 16px;
-      }
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
 
-      .loading .container .logo {
-        /* border: 1px solid red; */
-        width: 12vw;
-      }
 
-      .loading .container .logo img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-      }
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1vw;
+    }
 
-      .title {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        align-self: center;
-        justify-content: center;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
+    .logo {
+      width: 20vw;
+    }
 
-      .title .stars {
-        position: absolute;
-        opacity: 0.5;
-        width: 12vw;
-      }
+    .logo img {
+      width: 100%;
+      object-fit: contain;
+      margin-bottom: 1vw;
+    }
 
-      .loader {
-        display: block;
-        --height-of-loader: 8px;
-        --loader-color: #faf729;
-        width: 100%;
-        height: var(--height-of-loader);
-        border-radius: 30px;
-        background-color: rgba(255, 255, 255, 0.2);
-        position: relative;
+    .loader-container {
+      width: 35vw;
+      height: 3.8vh;
+      background: linear-gradient(to right, #5a1c00, #300000);
+      border-radius: 3vw;
+      position: relative;
+      /* box-shadow: 0px 0px 10px 3px rgba(255, 165, 0, 0.8); */
+      border: 3px solid #EEA419;
+      z-index: 2;
+    }
+
+    .loader {
+      width: 100%;
+      height: 100%;
+      background: #200000;
+      border-radius: 3vw;
+      position: relative;
+      overflow: hidden;
+      border: 3px solid #C0650C;
+      
+      box-shadow:
+        inset -10px -10px 15px rgba(255, 50, 50, 0.3)
+        /* Additional depth */
+        ,
+        inset 10px 10px 15px rgba(0, 0, 0, 0.8)
+        /* Inner shadow */
+    }
+
+    .loader::before {
+      content: "";
+      position: absolute;
+      top: 18%;
+      left: 0;
+      height: 60%;
+      background: linear-gradient(to top, #FD5400, #EE910E);
+      border-radius: 3vw;
+      animation: progressAnimation 2s ease-in-out infinite;
+      padding-left: 1vw;
+    }
+
+    .loader-pin {
+      height: .18vw;
+      background: #FFBA00;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      top: 43%;
+      margin-left: 10px;
+      left: 0;
+      transform: translateY(-50%);
+      z-index: 3;
+      animation: progressAnimation 2s ease-in-out infinite;
+      border-radius: 10vw;
+    }
+
+    .loader-container-parant {
+      display: flex;
+      align-items: center;
+    }
+
+    .circle-1 {
+      width: 1vw;
+      height: 1vw;
+      background: #FFBA00;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transform: translateX(.8vw);
+      z-index: 1;
+    }
+
+
+    .circle-2 {
+      width: 1vw;
+      height: 1vw;
+      background: #FFBA00;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transform: translateX(-.8vw);
+      z-index: 1;
+    }
+
+    @keyframes progressAnimation {
+  0% {
+    width: 10%;
+    left: 0;
+    transform: translateX(-10%);
+    margin-left: 0px;
+  }
+
+  25% {
+    width: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-left: 0px;
+  }
+
+  50% {
+    width: 10%;
+    left: 100%;
+    transform: translateX(-100%);
+    margin-left: 0px;
+  }
+
+  75% {
+    width: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-left: 0px;
+  }
+
+  100% {
+    width: 10%;
+    left: 0;
+    transform: translateX(-10%);
+    margin-left: 0px;
+  }
+}
+
+    @media (max-width: 768px) {
+      .logo {
+        width: 28vh;
       }
 
       .loader::before {
-        content: "";
-        position: absolute;
-        background: var(--loader-color);
-        top: 0;
-        left: 0;
-        width: 0%;
-        height: 100%;
-        border-radius: 30px;
-        animation: moving 1s ease-in-out infinite;
+        padding-left: 1vh;
+      }
+  
+
+      .loader-pin {
+      height: .3vh;
+      margin-left: 5px;
       }
 
-      @keyframes moving {
-        50% {
-          width: 100%;
-        }
-
-        100% {
-          width: 0;
-          right: 0;
-          left: unset;
-        }
+      .loader-container {
+        width: 30vh;
+        height: 3vh;
+        border-radius: 6vh;
       }
 
-      @keyframes spin89345 {
-        0% {
-          transform: rotate(0deg);
-        }
-
-        100% {
-          transform: rotate(360deg);
-        }
+      .loader {
+        border-radius: 6vh;
       }
 
-      @media (max-width: 768px) {
-        .loading .container .logo {
-          /* border: 1px solid green; */
-          width: 17vh;
-        }
+      .loader::before {
+        border-radius: 6vh;
       }
-    </style>
-  </head>
 
-  <body>
-    <div class="loading">
-      <div class="container">
-        <div class="logo">
-          <img src="./logo.png" alt="El Dorado Spin" />
+      .circle-1 {
+      width: 1.2vh;
+      height: 1.2vh;
+      transform: translateX(.8vh);
+    }
+
+
+    .circle-2 {
+      width: 1.2vh;
+      height: 1.2vh;
+      transform: translateX(-.8vh);
+    }
+    }
+
+    @media screen and (max-width: 1000px) and (orientation: landscape) {
+      .logo {
+        width: 28vw;
+      }
+
+      .loader::before {
+        padding-left: 1vw;
+      }
+  
+      .loader::before {
+      top: 19%;
+    }
+
+      .loader-pin {
+      height: .18vw;
+      margin-left: 5px;
+      }
+
+      .loader-container {
+        width: 35vw;
+        height: 2.7vw;
+        border-radius: 6vw;
+      }
+
+      .loader {
+        border-radius: 6vw;
+      }
+
+      .loader::before {
+        border-radius: 6vw;
+      }
+
+      .circle-1 {
+      width: 1.2vw;
+      height: 1.2vw;
+      transform: translateX(.8vw);
+    }
+
+
+    .circle-2 {
+      width: 1.2vw;
+      height: 1.2vw;
+      transform: translateX(-.8vw);
+    }
+    }
+    
+  </style>
+</head>
+
+<body>
+  <div class="loading">
+    <div class="container">
+      <div class="logo">
+        <img src="./logo.png" alt="El Dorado Spin" />
+      </div>
+      <div class="loader-container-parant">
+        <span class="circle-1"></span>
+        <div class="loader-container">
+          <div class="loader"><span class="loader-pin"></span></div>
         </div>
-        <div class="title">
-          <img src="./star-animation.gif" alt="" class="stars" />
-          <img src="./title.svg" alt="El Dorado Spin" class="text" />
-        </div>
-        <div class="loader"></div>
+        <span class="circle-2"></span>
       </div>
     </div>
-  </body>
+  </div>
+</body>
+
 </html>
